@@ -1,0 +1,74 @@
+package practice1;
+
+public class CreditCard {
+
+	public static void main(String[] args) {
+		//Visa 10%
+		//MC 5%
+		//Discover 1%
+		System.out.println("Interest for Person 1: "+person1());
+		person2();
+		person1_2();
+	}
+	public static double visa(double v){
+		double vInterest = v*10/100;
+		return vInterest;
+	}
+	public static double MC(double mc){
+		double MCInterest = mc*5/100;
+		return MCInterest;
+	}
+	public static double Discover(double d){
+		double dInterest = d*1/100;
+		return dInterest;
+	}
+	public static double wallet(double v,double mc,double d){
+		double interest = visa(v)+MC(mc)+Discover(d);
+		return interest;
+	}
+	public  static double  person1(){
+		System.out.println("For Person1");
+		double p1v=100; // Balance in Visa card for person1 
+		double p1mc = 100; // Balance in MC card for person1
+		double p1d = 100; // Balance in Discover card for person1
+	
+		System.out.println("Interest for Visa Card : "+visa(p1v));
+		System.out.println("Interest for MC Card : "+MC(p1mc));
+		System.out.println("Interest for Discover Card : "+Discover(p1d));
+		double ans = wallet(p1v, p1mc, p1d);
+		System.out.println("Total Simple Interest for Person1 : " +ans);
+		System.out.println();
+		return ans;
+	}
+	public static  double  person2(){
+		System.out.println("For Person2");
+		double w1v = 100; //Balance in Visa Card in wallet1 
+		double w1mc = 0;  //Balance in MC Card in wallet1 
+		double w1d = 100; //Balance in Discover Card in wallet1 
+		double wallet1 = wallet(w1v,w1mc,w1d);
+		double w2v = 0; //Balance in Visa Card in wallet2
+		double w2mc = 100;  //Balance in MC Card in wallet2
+		double w2d = 0; //Balance in Discover Card in wallet2
+		double wallet2 = wallet(w2v,w2mc,w2d);
+		System.out.println("Interest for wallet1 : "+wallet1);
+		System.out.println("Interest for wallet2 : "+wallet2);
+		double ans2 = (wallet1+wallet2);
+		System.out.println("Total Interest for Person2 : " +ans2);
+		System.out.println();
+		return ans2;
+	}
+	public static  void person1_2(){
+		double p1w = wallet(100,100,100);
+		double p2w = wallet(100,100,0);
+	
+		System.out.println("For the next 2 people");
+		System.out.println("Total Interest for 1st Person's wallet : "+p1w+" This is the 1st Person's Simple Interest.");
+
+		System.out.println("Total Interest for 2nd Person's wallet : " +p2w+" This is the 2nd Person's simple interest.");
+		
+	}
+
+
+}
+
+

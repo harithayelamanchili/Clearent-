@@ -1,0 +1,61 @@
+package practice1;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+
+public class CreditCardTest {
+
+	
+	@Test
+	public void testVisa() {
+		assertEquals(10.0, CreditCard.visa(100),0.1);	
+	}
+	@Test
+	public void testMC(){
+		assertEquals(5.0, CreditCard.MC(100),0.1);
+	}
+	@Test
+	public void testDiscover(){
+		assertEquals(1.0, CreditCard.Discover(100),0.1);
+	}
+	@Test
+	public void testWallet(){
+		assertEquals((CreditCard.visa(100)+CreditCard.MC(100)+CreditCard.Discover(100)),CreditCard.wallet(100, 100, 100),0.1);
+		assertEquals((CreditCard.visa(100)+CreditCard.MC(0)+CreditCard.Discover(100)),CreditCard.wallet(100, 0, 100),0.1);
+		assertEquals((CreditCard.visa(100)+CreditCard.MC(100)+CreditCard.Discover(0)),CreditCard.wallet(100, 100,0),0.1);
+		assertEquals((CreditCard.visa(0)+CreditCard.MC(100)+CreditCard.Discover(100)),CreditCard.wallet(0, 100, 100),0.1);
+		assertEquals((CreditCard.visa(0)+CreditCard.MC(0)+CreditCard.Discover(100)),CreditCard.wallet(0, 0, 100),0.1);
+		assertEquals((CreditCard.visa(100)+CreditCard.MC(0)+CreditCard.Discover(0)),CreditCard.wallet(100, 0, 0),0.1);
+		assertEquals((CreditCard.visa(0)+CreditCard.MC(100)+CreditCard.Discover(0)),CreditCard.wallet(0, 100, 0),0.1);
+		
+	}
+	@Test
+	public void testPerson1(){
+		assertEquals(CreditCard.person1(),CreditCard.wallet(100,100,100),0.1);
+	}
+	 @Test
+	 public void testPerson2(){
+		 assertEquals(CreditCard.person2(),(CreditCard.wallet(100,0,100)+CreditCard.wallet(0, 100, 0)),0.1);
+	 }
+	 @Test
+	 public void testPerson1_2(){
+		 assertEquals(16.0,CreditCard.wallet(100,100,100),0.1);
+		 assertEquals(15.0,CreditCard.wallet(100, 100, 0),0.1);
+	 }
+	 
+	 @Test
+	 public void test(){
+		assertEquals((CreditCard.MC(100)+CreditCard.Discover(100)),CreditCard.wallet(0, 100, 100),0.1);
+		for(int i = 0 ; i< 100 ; i++){
+		double a = (Math.random()*100)+1;
+		double b = (Math.random()*100)+1;
+		double c = (Math.random()*100)+1;
+		assertEquals((CreditCard.visa(a)+CreditCard.MC(b)+CreditCard.Discover(c)), CreditCard.wallet(a, b, c), 0.1);
+		
+		}
+		
+	}
+
+}
